@@ -49,6 +49,7 @@ graphicspath.tex
 *.pages
 *.key
 *.pdf
+*~$*
 
 #Ignore LaTeX helper files
 *.blg
@@ -63,14 +64,4 @@ graphicspath.tex
 
 
 # Local directories to ignore
-tmp/
-fig/
-output/
-data/microscopy/
-data/csv_channcap_bootstrap/
-data/csv_protein_dist/
-data/mRNA_FISH/
-data/mcmc/
-data/csv_maxEnt_dist/
-_site/
-library.bib
+data/platereader/
