@@ -14,8 +14,8 @@ import evo_utils.viz
 colors = evo_utils.viz.set_plotting_style()
 
 # Define the experimental constants
-DATE = 
-RUN_NO = 
+DATE = 20190509
+RUN_NO = 1
 
 # ----------------------------------
 # Load the data.
@@ -104,5 +104,5 @@ for r in np.arange(layout_shape[0]):
         i += 1
 
 fig.suptitle(f'{DATE}_r{RUN_NO} whole plate growth curves', y=0.95)
-plt.savefig(f'output/{DATE}_r{RUN_NO}_growth_plate_summary.png',
+plt.savefig(f'output/growth_plate_summary.png',
             bbox_inches='tight')
