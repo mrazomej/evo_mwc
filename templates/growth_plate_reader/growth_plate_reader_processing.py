@@ -14,8 +14,8 @@ import evo_utils.viz
 colors = evo_utils.viz.set_plotting_style()
 
 # Define the experimental constants
-DATE = 
-RUN_NO = 
+DATE =
+RUN_NO =
 
 # ----------------------------------
 # Load the data.
@@ -35,12 +35,12 @@ for l in layout:
     info = pd.read_excel(f'./{DATE}_plate_layout.xlsx', sheet_name=l,
                          header=None).values
     # Flatten array to 1D going through columns
-    info = info.T.ravel()
+    info = info.ravel()
     # Append to list
     layout_info.append(info)
 
 # Set columns for tidy data frame
-columns = ['time', 'temp_C', 'OD600'] + layout
+columns = ['time_min', 'temp_C', 'OD600'] + layout
 
 # Initialize data frame
 df = pd.DataFrame(columns=columns)
@@ -50,7 +50,7 @@ for i, col in enumerate(data.loc[:, 2:].columns):
     # Initialize dataframe to save this particular well data
     df_well = pd.DataFrame(columns=columns)
     # Add time and temperature
-    df_well['time'] = data.loc[:, 0]
+    df_well['time_min'] = data.loc[:, 0]
     df_well['temp_C'] = data.loc[:, 1]
     # Add OD600 reads
     df_well['OD600'] = data[col]
@@ -63,13 +63,28 @@ for i, col in enumerate(data.loc[:, 2:].columns):
     df = pd.concat([df, df_well])
 
 
-# Extract information from strain name
-df['operator'] = [strain.split('_')[0] for strain in df.strain]
-df['repressor'] = [int(strain.split('_')[1][1:]) for strain in df.strain]
-df['volume_marker'] = [strain.split('_')[-1] for strain in df.strain]
+# Initialize array to save strains operator, repressor and volume marker
+op = list()
+rep = list()
+vol = list()
+# Loop through strains
+for strain in df.strain:
+    # Check if it is not a blanck
+    if strain != 'blank':
+        op.append(strain.split('_')[0])
+        rep.append(int(strain.split('_')[1][1:]))
+        vol.append(strain.split('_')[-1])
+    else:
+        op.append('blank')
+        rep.append(None)
+        vol.append('blank')
+# Add columns to data frame
+df['operator'] = op
+df['repressor'] = rep
+df['volume_marker'] = vol
 
 # Convert the time to minutes
-df['time'] = df['time'].str.split(':').apply(lambda x: int(x[0]) * 60
+df['time_min'] = df['time_min'].str.split(':').apply(lambda x: int(x[0]) * 60
                                              + int(x[1])+int(x[2])/60)
 
 # Insert identifier information.
@@ -104,5 +119,5 @@ for r in np.arange(layout_shape[0]):
         i += 1
 
 fig.suptitle(f'{DATE}_r{RUN_NO} whole plate growth curves', y=0.95)
-plt.savefig(f'output/{DATE}_r{RUN_NO}_growth_plate_summary.png',
+plt.savefig(f'output/growth_plate_summary.png',
             bbox_inches='tight')

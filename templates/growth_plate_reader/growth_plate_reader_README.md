@@ -3,16 +3,23 @@ status: Rejected
 reason: experiment not yet completed
 ---
 
-# YEAR-MONTH-DATE Plate Reader Growth Measurement
+# YYY-MM-DD Plate Reader Growth Measurement
 
 ## Purpose
 This experiment aims to measure the growth rate of the *E. coli* strains of interest in media with XX selection.
 
 ## Strain Information
 
-| Location | Plasmid | Genotype | Host Strain | Shorthand |
-| :------- | :------ | :------- | ----------: | --------: |
-| Manuel Strains 05 - pos. 9 | `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP, |  HG105 |`O2` |
+| Plasmid | Genotype | Host Strain | Shorthand |
+| :------ | :------- | ----------: | --------: |
+| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP` |  HG105 |`O1 R0` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP` |  HG104 |`O1 R22` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O1 R260` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O1 R1740` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP` |  HG105 |`O2 R0` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP` |  HG104 |`O2 R22` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O2 R260` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O2 R1740` |
 
 ## Notes & Observations
 
@@ -20,10 +27,10 @@ This experiment aims to measure the growth rate of the *E. coli* strains of inte
 ## Analysis Files
 
 **Whole Plate Growth Curves**
-![plate layout](output/XX_XX/gp_output_curves.png)
+![plate layout](output/growth_plate_summary.png)
 
-**Per Well Growth Rate Heatmap**
-[![growth curves](output/XX_XX/per_well_doubling_times_heatmap.png)]
+**Whole Plate Growth Rate Inferences**
+![plate layout](output/growth_rate_summary.png)
 
 ## Experimental Protocol
 
@@ -38,4 +45,4 @@ total volume of 300 µL.
 
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37C, shaking
 in a linear mode at the fastest speed. Measurements were taken every 7 minutes
-for approximately 24 hours.
+for approximately 36 hours.
