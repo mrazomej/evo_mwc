@@ -1,6 +1,6 @@
 ---
-status: Rejected
-reason: experiment not yet completed
+status: Accepted
+reason: Post processed data looks good.
 ---
 
 # 2019-05-11 Plate Reader Growth Measurement
