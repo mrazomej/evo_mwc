@@ -35,7 +35,7 @@ for l in layout:
     info = pd.read_excel(f'./{DATE}_plate_layout.xlsx', sheet_name=l,
                          header=None).values
     # Flatten array to 1D going through columns
-    info = info.T.ravel()
+    info = info.ravel()
     # Append to list
     layout_info.append(info)
 

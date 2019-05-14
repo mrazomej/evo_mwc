@@ -14,9 +14,9 @@ The experiment was done with different combination of dilutions in order to test
 
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
-| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP` |  HG105 |`O1` |
-| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP` |  HG105 |`O2` |
-| `pZS4*5-mCherry`| `galK<>25O3+11-sacB-cmR-YFP` |  HG105 |`O3` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-cmR-YFP` |  HG105 |`O1 R0` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-cmR-YFP` |  HG105 |`O2 R0` |
+| `pZS4*5-mCherry`| `galK<>25O3+11-sacB-cmR-YFP` |  HG105 |`O3 R0` |
 
 ## Notes & Observations
 The entry misc in the layout refers to the dilution done on the plate. For example `10k_500_dill` means that the cultures were diluted 1:10,000 overnight from a saturated LB culture into fresh M9 + 0.5% glucose. Then after 12 hours of growth it was diluted 1:500 into the selection media on the 96-well plate for the plate reader.
@@ -27,8 +27,8 @@ The entry misc in the layout refers to the dilution done on the plate. For examp
 **Whole Plate Growth Curves**
 ![plate layout](output/growth_plate_summary.png)
 
-**Per Well Growth Rate Heatmap**
-[![growth curves](output/XX_XX/per_well_doubling_times_heatmap.png)]
+**Whole plate Growth Rates as inferred from Gaussian Process**
+![plate layout](output/growth_rate_summary.png)
 
 ## Experimental Protocol
 
