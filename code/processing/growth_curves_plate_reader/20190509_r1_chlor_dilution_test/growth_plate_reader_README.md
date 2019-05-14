@@ -25,9 +25,11 @@ The entry misc in the layout refers to the dilution done on the plate. For examp
 ## Analysis Files
 
 **Whole Plate Growth Curves**
+
 ![plate layout](output/growth_plate_summary.png)
 
 **Whole plate Growth Rates as inferred from Gaussian Process**
+
 ![plate layout](output/growth_rate_summary.png)
 
 ## Experimental Protocol
