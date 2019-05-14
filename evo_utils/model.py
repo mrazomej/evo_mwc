@@ -16,7 +16,7 @@ Purpose:
 
 
 # THERMODYNAMIC FUNCTIONS
-def p_act(C, ka, ki, epsilon=4.5, logC=False):
+def p_act(C, ka=139, ki=0.53, epsilon=4.5, logC=False):
     '''
     Returns the probability of a lac repressor being in the active state, i.e.
     able to bind the promoter as a function of the ligand concentration.
@@ -46,7 +46,7 @@ def p_act(C, ka, ki, epsilon=4.5, logC=False):
         ((1 + C / ka)**2 + np.exp(-epsilon) * (1 + C / ki)**2)
 
 
-def fold_change(C, R, eRA, ka, ki, Nns=4.6E6, epsilon=4.5,
+def fold_change(C, R, eRA, ka=139, ki=0.53, Nns=4.6E6, epsilon=4.5,
                          logC=False):
     '''
     Computes the gene expression fold-change as expressed in the simple
