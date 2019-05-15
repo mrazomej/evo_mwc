@@ -6,6 +6,7 @@
 # from . import mcmc
 from . import viz
 from . import fitderiv
+from . import model
 
 
 __author__ = """Manuel Razo"""
