@@ -1,14 +1,15 @@
-# Git + GitHub As A Platform For Reproducible Research 
+# `evo_mwc` 
 
 ## Overview
-This repository sets out the skeleton of an organizational structure used for scientific research. It loosely follows what I have used for several of my research projects and I hope it inspires you to conduct your research in an open, reproducible, and honest manner.
-
-## How to Use
-To use this template for your research, fork this repository, change the name to something descriptive for your project, and adjust the licensing as you see fit. 
+This repository contains all active research materials for a project using MWC
+model parameters as selectable quantitative traits.
 
 ## Layout
-
-The repository is split into seven main directories, many of which have subdirectories. This structure has been designed to be easily navigable by humans and computers alike, allowing for rapid location of specific files and instructions. Within each directory is a `README.md` file which summarizes the purpose of that directory as well as some examples where necessary. This structure may not be perfect for your intended us and may need to be modified. Each section is briefly described below. 
+The repository is split into seven main directories, many of which have
+subdirectories. This structure has been designed to be easily navigable by
+humans and computers alike, allowing for rapid location of specific files and
+instructions. Within each directory is a `README.md` file which summarizes
+the purpose of that directory as well as some examples where necessary. 
 
 ### **`code`** 
 Where all of the *executed* code lives. This includes pipelines, scripts, and figure files. 
@@ -22,9 +23,11 @@ All raw data collected from your experiments as well as copies of the transforme
 
 ### **`miscellaneous`** 
 Files that may not be code, but are important for reproducibility of your findings.
-* **`protocols`**: A well annotated and general description of your experiments. These protocols should be descriptive enough for someone to follow your experiments independently 
-* **`materials`**: Information regarding the materials used in your experiments or data generation. This could include manufacturer information, records of purity, and/or lot and catalog numbers.
-* **`software details`**: Information about your computational environment that are necessary for others to execute your code. This includes details about your operating system, software version and required packages.
+* **`protocols`**: A well annotated and general description of the experiments. 
+
+* **`materials`**: Information regarding the materials used in the experiments
+
+* **`software details`**: Information about your computational environment 
 
 ### **`tests`** 
 All test suites for your code. *Any custom code you've written should be thoroughly and adequately tested to make sure you know how it is working.*
@@ -35,30 +38,30 @@ Custom code you've written that is *not* executed directly, but is called from f
 ### **`templates`** 
 Files that serve as blank templates that document the procedures taken for each experiment, simulation, or analysis routine. 
 
-### Required Files
-There are some files which I consider to be mandatory for any project.
-
-1. **`LICENSE`**: A legal protection of your work. *It is important to think deeply about the licensing of your work, and is not a decision to be made lightly. See [this useful site](https://choosealicense.com/) for more information about licensing and choosing the correct license for your project.*
-
-2. **`README.md`**: A descriptive yet succinct description of your research project and information regarding the structure outlined below.
-
-
 # License Information
+<img src="https://licensebuttons.net/l/by-nd/3.0/88x31.png">
+This work is licensed under
+[CC-BY-ND](https://creativecommons.org/licenses/by-nd/4.0/). All software is
+issued under the standard MIT license which is as follows:
 
-<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
-  <a rel="license"
-     href="http://creativecommons.org/publicdomain/zero/1.0/">
-    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
-  </a>
-  <br />
-  To the extent possible under law,
-  <a rel="dct:publisher"
-     href="github.com/gchure/reproducible_research">
-    <span property="dct:title">Griffin Chure</span></a>
-  has waived all copyright and related or neighboring rights to
-  <span property="dct:title">A template for using git as a platform for reproducible scientific research</span>.
-This work is published from:
-<span property="vcard:Country" datatype="dct:ISO3166"
-      content="US" about="github.com/gchure/reproducible_research">
-  United States</span>.
-</p>
+```
+Copyright 2019, The authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
