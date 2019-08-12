@@ -8,41 +8,55 @@ model parameters as selectable quantitative traits.
 The repository is split into seven main directories, many of which have
 subdirectories. This structure has been designed to be easily navigable by
 humans and computers alike, allowing for rapid location of specific files and
-instructions. Within each directory is a `README.md` file which summarizes
-the purpose of that directory as well as some examples where necessary. 
+instructions. Within each directory is a `README.md` file which summarizes the
+purpose of that directory as well as some examples where necessary. 
 
 ### **`code`** 
-Where all of the *executed* code lives. This includes pipelines, scripts, and figure files. 
- * **`processing`**: Any code used to *transform* the data into another type should live here. This can include everything from parsing of text data, image segmentation/filtering, or simulations.
- * **`analysis`**: Any code to to *draw conclusions* from an experiment or data set. This may include regression, dimensionality reduction, or calculation of various quantities.
- * **`exploratory`**: A sandbox where you keep a record of your different approaches to transformation, interpretation, cleaning, or generation of data.
- * **`figures`**: Any code used to generate figures for your finished work, presentations, or for any other use.
+Where all of the *executed* code lives. This includes pipelines, scripts, and
+figure files. 
+ * **`processing`**: Any code used to *transform* the data into another type
+   should live here. This can include everything from parsing of text data,
+   image segmentation/filtering, or simulations.
+ * **`analysis`**: Any code to to *draw conclusions* from an experiment or data
+   set. This may include regression, dimensionality reduction, or calculation
+   of various quantities.
+ * **`exploratory`**: A sandbox where you keep a record of your different
+   approaches to transformation, interpretation, cleaning, or generation of
+   data.
+ * **`figures`**: Any code used to generate figures for your finished work,
+   presentations, or for any other use.
 
 ### **`data`** 
-All raw data collected from your experiments as well as copies of the transformed data from your processing code. 
+All raw data collected from your experiments as well as copies of the
+transformed data from your processing code. 
 
 ### **`miscellaneous`** 
-Files that may not be code, but are important for reproducibility of your findings.
-* **`protocols`**: A well annotated and general description of the experiments. 
+Files that may not be code, but are important for reproducibility of your
+findings.
+* **`protocols`**: A well annotated and general description of the experiments.
 
 * **`materials`**: Information regarding the materials used in the experiments
 
 * **`software details`**: Information about your computational environment 
 
 ### **`tests`** 
-All test suites for your code. *Any custom code you've written should be thoroughly and adequately tested to make sure you know how it is working.*
+All test suites for your code. *Any custom code you've written should be
+thoroughly and adequately tested to make sure you know how it is working.*
 
-### **`software_module`** 
-Custom code you've written that is *not* executed directly, but is called from files in the `code` directory. If you've written your code in Python, for example, this can be the root folder for your custom software module or simply house a file with all of your functions. 
+### **`evo_mwc`** 
+Custom code you've written that is *not* executed directly, but is called from
+files in the `code` directory. If you've written your code in Python, for
+example, this can be the root folder for your custom software module or simply
+house a file with all of your functions. 
 
 ### **`templates`** 
-Files that serve as blank templates that document the procedures taken for each experiment, simulation, or analysis routine. 
+Files that serve as blank templates that document the procedures taken for each
+experiment, simulation, or analysis routine. 
 
 # License Information
-<img src="https://licensebuttons.net/l/by-nd/3.0/88x31.png">
-This work is licensed under
-[CC-BY-ND](https://creativecommons.org/licenses/by-nd/4.0/). All software is
-issued under the standard MIT license which is as follows:
+<img src="https://licensebuttons.net/l/by-nd/3.0/88x31.png"> This work is
+licensed under [CC-BY-ND](https://creativecommons.org/licenses/by-nd/4.0/). All
+software is issued under the standard MIT license which is as follows:
 
 ```
 Copyright 2019, The authors
