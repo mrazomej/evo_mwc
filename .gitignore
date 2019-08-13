@@ -62,6 +62,8 @@ graphicspath.tex
 **/.ipynb_checkpoints/
 *pycache*
 
+#Ignore files generated when installing package
+evo_mwc.egg-info/
 
 # Local directories to ignore
 data/plate_reader/
