@@ -21,11 +21,10 @@ Purpose:
 """
 
 # Default RP plotting style
-def set_plotting_style():
+def pboc_style_mpl():
     """
-    Formats plotting enviroment to that used in Physical Biology of the Cell,
-    2nd edition. To format all plots within a script, simply execute
-    `mwc_induction_utils.set_plotting_style() in the preamble.
+    Formats matplotlib plotting enviroment to that used in 
+    Physical Biology of the Cell, 2nd edition.
     """
     rc = {'lines.linewidth': 1.25,
           'axes.labelsize': 8,
@@ -37,7 +36,9 @@ def set_plotting_style():
           'grid.linestyle': '-',
           'grid.linewidth': 0.5,
           'grid.color': '#ffffff',
-          'legend.fontsize': 8}
+          'legend.fontsize': 8,
+          'figure.dpi': 300,
+          'savefig.dpi': 300}
     plt.rc('text.latex', preamble=r'\usepackage{sfmath}')
     plt.rc('xtick.major', pad=-1)
     plt.rc('ytick.major', pad=-1)
@@ -49,3 +50,45 @@ def set_plotting_style():
     sns.set_style('darkgrid', rc=rc)
     sns.set_palette("colorblind", color_codes=True)
     sns.set_context('notebook', rc=rc)
+ 
+def pboc_style_bokeh():
+    '''
+    Formats bokeh plotting enviroment to that used in 
+    Physical Biology of the Cell, 2nd edition.
+    '''
+    theme_json = {'attrs':
+            {'Figure': {
+                'background_fill_color': '#E3DCD0',
+                'outline_line_color': '#FFFFFF',
+            },
+            'Axis': {
+            'axis_line_color': "white",
+            'major_tick_in': 7,
+            'major_tick_line_width': 2.5,
+            'major_tick_line_color': "white",
+            'minor_tick_line_color': "white",
+            'axis_label_text_font': 'Helvetica',
+            'axis_label_text_font_style': 'normal'
+            },
+            'Grid': {
+                'grid_line_color': 'white',
+            },
+            'Legend': {
+                'background_fill_color': '#E3DCD0',
+                'border_line_color': '#FFFFFF',
+                'border_line_width': 1.5,
+                'background_fill_alpha': 0.5
+            },
+            'Text': {
+                'text_font_style': 'normal',
+               'text_font': 'Helvetica'
+            },
+            'Title': {
+                'background_fill_color': '#FFEDC0',
+                'text_font_style': 'normal',
+                'align': 'center',
+                'text_font': 'Helvetica',
+                'offset': 2,
+            }}}
+
+    return theme_json
