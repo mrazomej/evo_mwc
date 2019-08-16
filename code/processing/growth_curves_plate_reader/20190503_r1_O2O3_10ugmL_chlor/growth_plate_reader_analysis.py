@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.insert(0, '../../../../')
 import numpy as np
 import pandas as pd
 import string
 import os
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
-import evo_utils.viz
-colors = evo_utils.viz.set_plotting_style()
-import evo_utils.fitderiv
+import evo_mwc.viz
+import evo_mwc.fitderiv
 import seaborn as sns
 import statsmodels.api as sm
+
+
+matplotlib.use('Agg')
+evo_mwc.viz.pboc_style_mpl()
 
 # Define the experimental constants
 # For figure titles
@@ -91,7 +91,7 @@ if (not REPLOT) & (GROUPED):
         # (http://swainlab.bio.ed.ac.uk/software/fitderiv/)
         # from Peter Swain's lab,
         # perform non-parametric inference of the time-dependent growth rates.
-        gp = evo_utils.fitderiv.fitderiv(time, OD)
+        gp = evo_mwc.fitderiv.fitderiv(time, OD)
 
         # Create dataframe with full time series results of the fit
         gp_df = gp.export('NONE', savegp=False, savestats=False)
@@ -201,7 +201,7 @@ if (not REPLOT) & (PER_WELL):
         # (http://swainlab.bio.ed.ac.uk/software/fitderiv/)
         # from Peter Swain's lab,
         # perform non-parametric inference of the time-dependent growth rates.
-        gp = evo_utils.fitderiv.fitderiv(time, OD)
+        gp = evo_mwc.fitderiv.fitderiv(time, OD)
 
         # Create dataframe with full time series results of the fit
         gp_df = gp.export('NONE', savegp=False, savestats=False)

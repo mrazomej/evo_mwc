@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.insert(0, '../../../../')
+
+#%%
 import numpy as np
 import pandas as pd
 import string
@@ -8,16 +8,17 @@ import os
 import glob
 import csv
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import evo_utils.viz
-colors = evo_utils.viz.set_plotting_style()
+import evo_mwc.viz
 
+matplotlib.use('Agg')
+evo_mwc.viz.pboc_style_mpl()
+
+#%% 
 # Define the experimental constants
 DATE = 20190503
 RUN_NO = 1
 
-# ----------------------------------
 # Load the data.
 file = glob.glob(f'../../../../data/plate_reader/{DATE}_r{RUN_NO}_*.csv')[0]
 data = pd.read_csv(file, header=None)
@@ -42,6 +43,7 @@ for l in layout:
 # Set columns for tidy data frame
 columns = ['time_min', 'temp_C', 'OD600'] + layout
 
+#%%
 # Initialize data frame
 df = pd.DataFrame(columns=columns)
 
@@ -121,3 +123,5 @@ for r in np.arange(layout_shape[0]):
 fig.suptitle(f'{DATE}_r{RUN_NO} whole plate growth curves', y=0.95)
 plt.savefig(f'output/growth_plate_summary.png',
             bbox_inches='tight')
+
+#%%
