@@ -118,7 +118,8 @@ if (not REPLOT) & (GROUPED):
         df_gp = pd.concat([df_gp, gp_df], ignore_index=True)
 
     # Export result
-    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_grouped.csv')
+    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_grouped.csv',
+                 index_col=False)
 
 # Perform plots for grouped data
 if GROUPED:
@@ -227,7 +228,8 @@ if (not REPLOT) & (PER_WELL):
         df_gp = pd.concat([df_gp, gp_df], ignore_index=True)
 
     # Export result
-    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv')
+    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv',
+                 index_col=False)
 
 # Perform plots for grouped data
 if PER_WELL:
@@ -288,7 +290,8 @@ if PER_WELL:
         # Set plot axis
         ax[r][c].set_ylim([-0.01, 0.01])
         # Plot growth rate
-        ax[r][c].plot(df.time_min, df.growth_rate)
+        ax[r][c].plot(df.sort_values('time_min').time_min,
+                      df.sort_values('time_min').growth_rate)
         # increase counter
 
     # Remove axis from all plots
