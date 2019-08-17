@@ -27,7 +27,7 @@ PER_WELL = True  # Perform analysis per well
 GROUP = ['challenge', 'plasmid']
 
 # Define if you only want to plot existing results
-REPLOT = True
+REPLOT = False
 # ----------------------------------
 
 # Load the data.
