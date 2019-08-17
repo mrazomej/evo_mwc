@@ -1,4 +1,4 @@
-time_min,temp_C,OD600,strains,well,media,challenge,plasmid,pos_select,neg_select,date,run_number
+time_min,temp_C,OD600,strain,well,media,challenge,plasmid,pos_select,neg_select,date,run_number
 1.7833333333333332,37.1,395,HG105,A01,M9 + 0.5%glucose,None,None,None,None,20190814,1
 6.783333333333333,37.0,653,HG105,A01,M9 + 0.5%glucose,None,None,None,None,20190814,1
 11.783333333333333,37.0,639,HG105,A01,M9 + 0.5%glucose,None,None,None,None,20190814,1

@@ -12,19 +12,19 @@ import seaborn as sns
 import statsmodels.api as sm
 
 matplotlib.use('Agg')
-evo_mwc.viz.set_plotting_style()
+evo_mwc.viz.pboc_style_mpl()
 
 # Define the experimental constants
 # For figure titles
-DATE =
-RUN_NO =
+DATE = 20190814
+RUN_NO = 1
 
 # Define which analysis to perform
 GROUPED = True  # Perform analysis per groups
 PER_WELL = True  # Perform analysis per well
 
 # Define parameters to group strains by
-GROUP = ['strain', 'selection']
+GROUP = ['challenge', 'plasmid']
 
 # Define if you only want to plot existing results
 REPLOT = False
@@ -288,7 +288,8 @@ if PER_WELL:
         # Set plot axis
         ax[r][c].set_ylim([-0.01, 0.01])
         # Plot growth rate
-        ax[r][c].plot(df.time_min, df.growth_rate)
+        ax[r][c].plot(df.sort_values(by='time_min').time_min,
+                      df.growth_rate.sort_values(by='time_min'))
         # increase counter
 
     # Remove axis from all plots
