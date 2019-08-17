@@ -20,18 +20,19 @@ DATE = 20190814
 RUN_NO = 1
 
 # Define which analysis to perform
-GROUPED = True  # Perform analysis per groups
+GROUPED = False # Perform analysis per groups
 PER_WELL = True  # Perform analysis per well
 
 # Define parameters to group strains by
 GROUP = ['challenge', 'plasmid']
 
 # Define if you only want to plot existing results
-REPLOT = False
+REPLOT = True
 # ----------------------------------
 
 # Load the data.
-data = pd.read_csv(f'output/{DATE}_r{RUN_NO}_growth_plate.csv')
+data = pd.read_csv(f'output/{DATE}_r{RUN_NO}_growth_plate.csv',
+                   index_col=False)
 
 # Generate a dictionary of the mean blank at each time point.
 blank_vals = {t: val['OD600'].mean() for t, val in
@@ -227,9 +228,9 @@ if (not REPLOT) & (PER_WELL):
         df_gp = pd.concat([df_gp, gp_df], ignore_index=True)
 
     # Export result
-    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv')
+    df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv', index=False)
 
-# Perform plots for grouped data
+# Perform plots for per well data
 if PER_WELL:
     # Read derivatives
     df_gp = pd.read_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv')
@@ -289,7 +290,7 @@ if PER_WELL:
         ax[r][c].set_ylim([-0.01, 0.01])
         # Plot growth rate
         ax[r][c].plot(df.sort_values(by='time_min').time_min,
-                      df.growth_rate.sort_values(by='time_min'))
+                      df.sort_values(by='time_min').growth_rate)
         # increase counter
 
     # Remove axis from all plots
