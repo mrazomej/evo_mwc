@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.insert(0, '../../../../')
 import numpy as np
 import pandas as pd
 import string
@@ -8,10 +6,11 @@ import os
 import glob
 import csv
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import evo_utils.viz
-colors = evo_utils.viz.set_plotting_style()
+import evo_mwc.viz
+
+matplotlib.use('Agg')
+evo_mwc.viz.pboc_style_mpl()
 
 # Define the experimental constants
 DATE =
