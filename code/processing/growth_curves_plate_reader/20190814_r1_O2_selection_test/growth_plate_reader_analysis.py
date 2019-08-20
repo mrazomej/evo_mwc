@@ -20,8 +20,8 @@ DATE = 20190814
 RUN_NO = 1
 
 # Define which analysis to perform
-GROUPED = False # Perform analysis per groups
-PER_WELL = True  # Perform analysis per well
+GROUPED = True # Perform analysis per groups
+PER_WELL = False # Perform analysis per well
 
 # Define parameters to group strains by
 GROUP = ['challenge', 'plasmid']
@@ -88,7 +88,7 @@ if (not REPLOT) & (GROUPED):
         # (http://swainlab.bio.ed.ac.uk/software/fitderiv/)
         # from Peter Swain's lab,
         # perform non-parametric inference of the time-dependent growth rates.
-        gp = evo_mwc.fitderiv.fitderiv(time, OD)
+        gp = evo_mwc.fitderiv.fitderiv(time, OD, cvfn='nn')
 
         # Create dataframe with full time series results of the fit
         gp_df = gp.export('NONE', savegp=False, savestats=False)
@@ -190,7 +190,7 @@ if (not REPLOT) & (PER_WELL):
         # This is time as  an array and then the OD as a 2D array with a column
         # per replica
         # Obtain time
-        time = np.sort(df['time_min'].unique())
+        time = df.sort_values(by='time_min').time_min.values
 
         # Extract OD measurements into the corresponding array
         OD = df.sort_values(by='time_min').OD600.values
@@ -198,7 +198,7 @@ if (not REPLOT) & (PER_WELL):
         # (http://swainlab.bio.ed.ac.uk/software/fitderiv/)
         # from Peter Swain's lab,
         # perform non-parametric inference of the time-dependent growth rates.
-        gp = evo_mwc.fitderiv.fitderiv(time, OD)
+        gp = evo_mwc.fitderiv.fitderiv(time, OD, cvfn='nn')
 
         # Create dataframe with full time series results of the fit
         gp_df = gp.export('NONE', savegp=False, savestats=False)
