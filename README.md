@@ -11,7 +11,30 @@ humans and computers alike, allowing for rapid location of specific files and
 instructions. Within each directory is a `README.md` file which summarizes the
 purpose of that directory as well as some examples where necessary. 
 
-### **`code`** 
+### **`evo_mwc`** 
+Custom code written for the project that is *not* executed directly, but is
+called from files in the `code` directory.
+
+#### **Installing module**
+In order to use the functions within the `evo_mwc` module it is necessary to
+install the package locally. This can simply be done by navigating in the
+terminal to the main project directory and typing the command
+```
+pip install -e ./
+```
+The `setup.py` file will take care of the installation. The `-e` option within
+the package allows for the constant update of the package as it might be
+subject to changes as the project is being developed.
+
+The modules contained in the package include:
+- `viz.py` : functions for data visualization and plot styling.
+- `model.py` : functions related to the theoretical model to map biophysical
+  traits to fitness functions.
+- `gaussianprocess.py`, `fitderiv.py` : series of functions to compute
+  derivatives from time series as detailed in [Swain et al,
+  2016](https://www.nature.com/articles/ncomms13766) 
+
+<!-- ### **`code`** 
 Where all of the *executed* code lives. This includes pipelines, scripts, and
 figure files. 
  * **`processing`**: Any code used to *transform* the data into another type
@@ -43,15 +66,9 @@ findings.
 All test suites for your code. *Any custom code you've written should be
 thoroughly and adequately tested to make sure you know how it is working.*
 
-### **`evo_mwc`** 
-Custom code you've written that is *not* executed directly, but is called from
-files in the `code` directory. If you've written your code in Python, for
-example, this can be the root folder for your custom software module or simply
-house a file with all of your functions. 
-
 ### **`templates`** 
 Files that serve as blank templates that document the procedures taken for each
-experiment, simulation, or analysis routine. 
+experiment, simulation, or analysis routine.  -->
 
 # License Information
 <img src="https://licensebuttons.net/l/by-nd/3.0/88x31.png"> This work is
