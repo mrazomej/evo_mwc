@@ -10,21 +10,27 @@ import evo_mwc.viz
 import evo_mwc.fitderiv
 import seaborn as sns
 import statsmodels.api as sm
+import git
+
+# Find home directory for repo
+repo = git.Repo("./", search_parent_directories=True)
+homedir = repo.working_dir
 
 matplotlib.use('Agg')
 evo_mwc.viz.pboc_style_mpl()
 
-# Define the experimental constants
-# For figure titles
-DATE =
-RUN_NO =
+# Find date
+workdir = os.getcwd().split('/')[-1]
+DATE = int(workdir.split('_')[0])
+RUN_NO = int(workdir.split('_')[1][-1])
+
 
 # Define which analysis to perform
-GROUPED = True  # Perform analysis per groups
+GROUPED = True # Perform analysis per groups
 PER_WELL = True  # Perform analysis per well
 
 # Define parameters to group strains by
-GROUP = ['strain', 'selection']
+GROUP = ['strain', 'pos_selection', 'neg_selection']
 
 # Define if you only want to plot existing results
 REPLOT = False
@@ -119,7 +125,7 @@ if (not REPLOT) & (GROUPED):
 
     # Export result
     df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_grouped.csv',
-                 index_col=False)
+                 index=False)
 
 # Perform plots for grouped data
 if GROUPED:
@@ -229,7 +235,7 @@ if (not REPLOT) & (PER_WELL):
 
     # Export result
     df_gp.to_csv(f'output/{DATE}_r{RUN_NO}_gp_per_well.csv',
-                 index_col=False)
+                 index=False)
 
 # Perform plots for grouped data
 if PER_WELL:

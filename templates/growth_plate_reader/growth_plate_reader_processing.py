@@ -8,18 +8,26 @@ import csv
 import matplotlib
 import matplotlib.pyplot as plt
 import evo_mwc.viz
+import git
+
+# Find home directory for repo
+repo = git.Repo("./", search_parent_directories=True)
+homedir = repo.working_dir
 
 matplotlib.use('Agg')
 evo_mwc.viz.pboc_style_mpl()
 
-# Define the experimental constants
-DATE =
-RUN_NO =
+# Find date
+workdir = os.getcwd().split('/')[-1]
+DATE = int(workdir.split('_')[0])
+RUN_NO = int(workdir.split('_')[1][-1])
 
 # ----------------------------------
 # Load the data.
-file = glob.glob(f'../../../../data/plate_reader/{DATE}_r{RUN_NO}_*.csv')[0]
+file = glob.glob(f'{homedir}/data/plate_reader/{DATE}_r{RUN_NO}_*.csv')[0]
 data = pd.read_csv(file, header=None)
+# Drop NaNs
+data = data.dropna('index', 'any')
 
 # Read features on plate layout
 xl = pd.ExcelFile(f'./{DATE}_plate_layout.xlsx')
