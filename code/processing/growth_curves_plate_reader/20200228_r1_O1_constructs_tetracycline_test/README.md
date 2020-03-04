@@ -1,28 +1,29 @@
 ---
 status: Rejected
-reason: experiment not yet completed
+reason: exploratory experiment
 ---
 
 # 2020-02-28 Plate Reader Growth Measurement
 
 ## Purpose
-This experiment aims to measure the growth rate of the *E. coli* strains of interest in media with selection for resistance to the antibiotic tetracycline.
-
+This experiment aims to explore resistance of different *E. coli* strains to tetracycline. We integrated the O1 repressor binding site and the tetA gene into the genome of
+cells with different repressor copy numbers. Here we try to find a range of tetracycline concentrations where we can identify different growth rates, and check if we can
+see differences in growth rates at equal concentrations between cells with different repressor copy numbers.
 ## Strain Information
 
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
-| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-cmR-YFP`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O1 R1740` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-cmR-YFP`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O1 R260` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-cmR-YFP` |  HG104 |`O1 R22` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-cmR-YFP` |  HG105 |`O1 R0` |
-| `pZS4*5-CFP`| `galK<>25O1+11-tetA-cmR-YFP`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O1 R1740` |
-| `pZS4*5-CFP`| `galK<>25O1+11-tetA-cmR-YFP`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O1 R260` |
-| `pZS4*5-CFP`| `galK<>25O1+11-tetA-cmR-YFP` |  HG104 |`O1 R22` |
-| `pZS4*5-CFP`| `galK<>25O1+11-tetA-cmR-YFP` |  HG105 |`O1 R0` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m`, , `ybcN<>5-RBS1L-lacI` |  HG105 |`O1 R1740 mCh` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m`, `ybcN<>5-RBS1027-lacI` |  HG105 |`O1 R260mCh` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m` |  HG104 |`O1 R22 mCh` |
+| `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m` |  HG105 |`O1 R0 mCh` |
+| `pZS4*5-CFP`| `galK<>25O1+11-tetA-C51m`, , `ybcN<>5-RBS1L-lacI` |  HG105 |`O1 R1740 CFP` |
+| `pZS4*5-CFP`| `galK<>25O1+11-tetA-C51m`, `ybcN<>5-RBS1027-lacI` |  HG105 |`O1 R260 CFP` |
+| `pZS4*5-CFP`| `galK<>25O1+11-tetA-C51m` |  HG104 |`O1 R22 CFP` |
+| `pZS4*5-CFP`| `galK<>25O1+11-tetA-C51m` |  HG105 |`O1 R0 CFP` |
 
 ## Notes & Observations
-Concentrations for row 4 and 5 are switched. 
+Concentrations for row 4 and 5 are switched.
 
 ## Analysis Files
 
