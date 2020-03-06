@@ -131,3 +131,5 @@ for r in np.arange(layout_shape[0]):
 fig.suptitle(f'{DATE}_r{RUN_NO} whole plate growth curves', y=0.95)
 plt.savefig(f'output/growth_plate_summary.pdf',
             bbox_inches='tight')
+plt.savefig(f'output/growth_plate_summary.png',
+            bbox_inches='tight')
