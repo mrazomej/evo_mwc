@@ -27,9 +27,11 @@ This experiment aims to measure the growth rate of the *E. coli* strains of inte
 ## Analysis Files
 
 **Whole Plate Growth Curves**
+
 ![plate layout](output/growth_plate_summary.png)
 
 **Whole Plate Growth Rate Inferences**
+
 ![plate layout](output/growth_rate_summary.png)
 
 ## Experimental Protocol
