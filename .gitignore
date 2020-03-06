@@ -66,4 +66,4 @@ graphicspath.tex
 evo_mwc.egg-info/
 
 # Local directories to ignore
-data/plate_reader/
+# data/plate_reader/
