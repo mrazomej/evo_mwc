@@ -40,9 +40,11 @@ cloudy. It seems that the salt has a hard time going into solution
 ## Analysis Files
 
 **Whole Plate Growth Curves**
+
 ![plate layout](output/growth_plate_summary.png)
 
 **Whole Plate Growth Rate Inferences**
+
 ![plate layout](output/growth_rate_summary.png)
 
 ## Experimental Protocol
