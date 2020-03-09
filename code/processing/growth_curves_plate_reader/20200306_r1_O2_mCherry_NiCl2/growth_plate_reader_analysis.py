@@ -30,7 +30,7 @@ GROUPED = True # Perform analysis per groups
 PER_WELL = True  # Perform analysis per well
 
 # Define parameters to group strains by
-GROUP = ['strain', 'neg_selection']
+GROUP = ['strain', 'neg_selection', 'pos_selection']
 
 # Define if you only want to plot existing results
 REPLOT = False
