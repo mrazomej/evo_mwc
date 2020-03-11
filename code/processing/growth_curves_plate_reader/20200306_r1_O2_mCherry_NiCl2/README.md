@@ -22,6 +22,9 @@ in this range.
 | `pZS4*5-mCherry`| `galK<>25O2+11-tetA-C51m`, `ybcN<>5-RBS1L-lacI` |  HG105 |`R1740` |
 | `pZS4*5-mCherry`| -- |  HG105 |`WT` |
 
+## Plate Layout
+
+![plate layout](output/plate_layout.png)
 
 ## Selection Concentrations
 | Selection Pressure | Concentration |
