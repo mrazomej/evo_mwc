@@ -20,6 +20,9 @@ to know if there is also some synergy between both drugs.
 | `pZS4*5-mCherry`| `wild type` |  HG105 |`wt` |
 | `pZS4*5-mCherry`| `galK<>25O2+11-tetA-C51m` |  HG105 |`O2 ∆` |
 
+## Plate Layout
+![plate layout](output/plate_layout.png)
+
 ## Notes & Observations
 When preparing the highest concentration of Disulfiram I went from a 50 mM
 stock to a 1 mM stock. This - just as NiCl2 - created a really cloudy solution
