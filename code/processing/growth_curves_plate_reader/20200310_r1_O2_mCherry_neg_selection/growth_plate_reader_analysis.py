@@ -26,7 +26,7 @@ RUN_NO = int(workdir.split('_')[1][-1])
 
 
 # Define which analysis to perform
-GROUPED = True # Perform analysis per groups
+GROUPED = False # Perform analysis per groups
 PER_WELL = True  # Perform analysis per well
 
 # Define parameters to group strains by
@@ -40,14 +40,14 @@ REPLOT = False
 data = pd.read_csv(f'output/{DATE}_r{RUN_NO}_growth_plate.csv')
 
 # Generate a dictionary of the mean blank at each time point.
-blank_vals = {t: val['OD600'].mean() for t, val in
-              data[data['strain'] == 'blank'].groupby(['time_min'])}
-
-# Add mean blank values for each time point to the dataframe,
-# as well as background subtracted OD values.
-for k, v in blank_vals.items():
-    data.loc[data['time_min'] == k, 'blank_val'] = v
-data['OD_sub'] = data['OD600'] - data['blank_val']
+# blank_vals = {t: val['OD600'].mean() for t, val in
+#               data[data['strain'] == 'blank'].groupby(['time_min'])}
+# 
+# # Add mean blank values for each time point to the dataframe,
+# # as well as background subtracted OD values.
+# for k, v in blank_vals.items():
+#     data.loc[data['time_min'] == k, 'blank_val'] = v
+# data['OD_sub'] = data['OD600'] - data['blank_val']
 
 # ----------------------------------
 # Compute growth rate for grouped data
