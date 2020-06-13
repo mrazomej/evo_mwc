@@ -42,14 +42,21 @@ efflux pump.
 ## Experimental Protocol
 
 1. Cells as described in "Strain Information" were grown to saturation in 4 mL
-of LB in 14 mL culture tubes.
+   of LB + Kan + Spec (except `HG105` with Spec only) in 14 mL culture tubes.
 
-2. Cells were diluted 1:1000 into 4 mL of M9 + 0.5% glucose media ≈ 8 hours 
-after the initial inoculation to adapt cells into the M9 media.
+2. Cells were diluted 1:1000 into 4 mL of M9 + 0.5% glucose + Kan + Spec (except
+   `HG105` with Spec only) ≈ 8 hours after the initial inoculation to adapt
+   cells into the M9 media.
 
 3. The cells were then diluted 1:100 into the plate reader 96 well plate with a
-total volume of 300 µL.
+   total volume of 300 µL.
+    
+- Note: For the plate preparation the β-thujaplicin came from a 15 mg/mL stock
+  (≈90 mM) in DMSO stored at -20ºC. This was gently thawed before the experiment
+  and for each of the concentrations in the experiment a 60x solution was
+  prepared in order to add 5 µL of this 60x dilution to 295 µL of media in the
+  96-well plate.
 
-4. The plate was placed in a Biotek Gen5 plate reader and grown at 37C, shaking
-in a linear mode at the fastest speed. Measurements were taken every 15 minutes
-for approximately 36 hours.
+4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
+   in a linear mode at the fastest speed. Measurements were taken every 15
+   minutes for approximately 36 hours.
