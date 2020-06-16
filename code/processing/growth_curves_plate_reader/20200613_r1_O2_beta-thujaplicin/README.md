@@ -1,6 +1,6 @@
 ---
 status: Rejected
-reason: experiment not yet completed
+reason: Strains do not follow the expected trend.
 ---
 
 # 2020-06-13 Plate Reader Growth Measurement
@@ -60,3 +60,24 @@ efflux pump.
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements were taken every 15
    minutes for approximately 36 hours.
+
+## Conclusions
+
+The conclusions on this section come from the qualitative exploration of the
+data. In particular the file `growth_plate_reader_exploration.ipynb` with its
+interactive plots helped us reach these conclusions.
+
+The data does not follow the expected trend whatsoever. There are several issues
+with the data:
+- The `O2-R0` strain presents completely different behaviors for each of the
+  rows where it was inoculated.
+- The trend does not follow what we expect for the negative selection. The
+  expected case was that the strain with the highest number of repressors would
+  have the highest growth rate among the strains expressing *tetA*. But this
+  starin presents a weird behavior. We know from the experiment on `20200314`
+  that this strain seems to fall out of the expected trends. So this suggests
+  again a contamination issue that needs to be addressed.
+
+What we did learn from the experiment is that the **best concentration of
+β-thujaplicin lies between 30 and 100 µM**. Future explorations will have to
+span this range to nail down the best values.
