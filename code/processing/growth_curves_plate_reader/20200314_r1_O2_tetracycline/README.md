@@ -1,14 +1,13 @@
 ---
 status: Rejected
-reason: experiment not yet completed
+reason: O2-R1740 does not follow the expected trend. Possible contamination.
 ---
 
 # 2020-03-14 Plate Reader Growth Measurement
-The objective of this experiment is to measure the growth rate differences of
-all of the O2 constructs with more precision.
 
 ## Purpose
-
+The objective of this experiment is to measure the growth rate differences of
+all of the O2 constructs with more precision.
 
 ## Strain Information
 
@@ -57,3 +56,19 @@ different sections of the plate.
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC,
    shaking in a linear mode at the fastest speed. Measurements were taken every
    15 minutes for approximately 20 hours.
+
+## Conclusion
+
+The conclusions listed here come from an exploration of the data. In particular
+the file `growth_plate_reader_exploration.ipynb` with its interactive plots
+was used to reach these conclusions.
+
+The **best concentration of tetracycline** seems to lie between **1 and 2
+µg/mL**. Above that the selection is too strong and the cells don't grow
+particularly well.
+
+The data reveals something troublesome about the `O2-R1740` strain. It seems not
+to follow the cool trend that the other strains were following. In particular it
+is worrisome that is seems to resemble too much the `O2-R22` data. This could
+indicate that there is a contamination of the strain, but further experiments
+will need to be done in order to assess this claim.
