@@ -13,7 +13,6 @@ strains in tetracycline using a checker board pattern.
 
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
-| `pZS4*5-mCherry`| `wild-type` |  HG105 |`HG105` |
 | `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m` |  HG105 |`O1 R0` |
 | `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m` |  HG104 |`O1 R22` |
 | `pZS4*5-mCherry`| `galK<>25O1+11-tetA-C51m`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O1 R260` |
