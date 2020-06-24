@@ -56,6 +56,11 @@ graphicspath.tex
 *.out
 *.synctex.gz
 
+#Ignore Stan garbage
+*.o
+*.hpp
+*.d
+
 #Ignore various code garbage.
 *.pyc
 *.ipynb_checkpoints*
