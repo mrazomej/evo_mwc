@@ -16,8 +16,9 @@ functions {
     {
         // Objective: 
         // Generate covariance matrix for the data
-        matrix[N_data, N_data] K = cov_exp_quad(t_data, alpha, rho)
-                               + diag_matrix(rep_vector(square(sigma), N_data));
+        matrix[N_data, N_data] K_exp = cov_exp_quad(t_data, alpha, rho);
+        matrix[N_data, N_data] K = K_exp 
+        + diag_matrix(rep_vector(square(sigma), N_data));
         // We want to solve K ⍺ = y for ⍺. K can be written as K = L_K L_K'
 
         // 1. Perform Cholesky decomposition K = L_K L_K'
@@ -57,9 +58,10 @@ functions {
             L_K, k_t_data_t_ppc
         );
         // 2. Evaluate Σ = K* - K*' inv(L_K L_K') K*
-        matrix[N_ppc, N_ppc] cov_f = cov_exp_quad(t_ppc, alpha, rho) 
-                                     - v_pred' * v_pred
-                                     + diag_matrix(rep_vector(delta, N_ppc));
+        matrix[N_ppc, N_ppc] cov_f_exp = cov_exp_quad(t_ppc, alpha, rho) ;
+        matrix[N_ppc, N_ppc] cov_f_exp2 = cov_f_exp - v_pred' * v_pred;
+        matrix[N_ppc, N_ppc] cov_f = cov_f_exp2 
+                                      + diag_matrix(rep_vector(delta, N_ppc));
 
         // Generate random samples given the variance and covariance functions
         // for the ppc samples
@@ -88,8 +90,8 @@ parameters {
 
 model {
     // Define covariance matrix k(t, t')
-    matrix[N, N] cov =  cov_exp_quad(t, alpha, rho)
-                        + diag_matrix(rep_vector(square(sigma), N));
+    matrix[N, N] cov_exp =  cov_exp_quad(t, alpha, rho);
+    matrix[N, N] cov = cov_exp + diag_matrix(rep_vector(square(sigma), N));
     // Perform a Cholesky decomposition of the matrix, this means rewrite the
     // covariance matrix cov = L_cov L_cov'
     matrix[N, N] L_cov = cholesky_decompose(cov);
