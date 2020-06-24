@@ -60,6 +60,7 @@ graphicspath.tex
 *.o
 *.hpp
 *.d
+*/stan_code/
 
 #Ignore various code garbage.
 *.pyc
