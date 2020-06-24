@@ -99,14 +99,14 @@ model {
     y ~ multi_normal_cholesky(rep_vector(0, N), L_cov);
 }
 
-// generated quantities {
-//     // Generate posterior predictive samples for the Gaussian process
-//     vector[N_predict] f_predict = gp_ppc_rng(
-//         t_predict, y, t, alpha, rho, sigma, 1e-10
-//     );
-//     // Generate posterior predictive samples for the observation process
-//     vector[N_predict] y_predict;
-//     for (n in 1:N_predict) {
-//         y_predict[n] = normal_rng(f_predict[n], sigma);
-//     }
-// }
+generated quantities {
+    // Generate posterior predictive samples for the Gaussian process
+    vector[N_predict] f_predict = gp_ppc_rng(
+        t_predict, y, t, alpha, rho, sigma, 1e-10
+    );
+    // Generate posterior predictive samples for the observation process
+    vector[N_predict] y_predict;
+    for (n in 1:N_predict) {
+        y_predict[n] = normal_rng(f_predict[n], sigma);
+    }
+}
