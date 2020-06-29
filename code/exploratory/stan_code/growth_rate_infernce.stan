@@ -78,16 +78,17 @@ parameters {
 }
 
 model {
-  matrix[N, N] cov =   cov_exp_quad(x, alpha, rho)
-                     + diag_matrix(rep_vector(square(sigma), N));
-  matrix[N, N] L_cov = cholesky_decompose(cov);
 
-  // P[rho < 2.0] = 0.01
-  // P[rho > 10] = 0.01
-  rho ~ normal(8000, 500);
+  rho ~ normal(8000, 1000);
   alpha ~ normal(0, 2);
   sigma ~ normal(0, 1);
 
+  matrix[N, N] cov_exp = cov_exp_quad(x, alpha, rho);
+  matrix[N, N] cov = cov_exp + diag_matrix(rep_vector(square(sigma), N));
+                     
+  matrix[N, N] L_cov = cholesky_decompose(cov);
+
+  
   y ~ multi_normal_cholesky(rep_vector(0, N), L_cov);
 }
 
@@ -95,7 +96,9 @@ generated quantities {
   vector[N_predict] f_predict = gp_pred_rng(x_predict, y, x, alpha, rho, sigma, 1e-10);
   vector[N_predict] g_predict = gp_pred_der_rng(x_predict, y, x, alpha, rho, sigma, 1e-10);
   vector[N_predict] y_predict;
+  vector[N_predict] y_p_predict;
   for (n in 1:N_predict){
     y_predict[n] = normal_rng(f_predict[n], sigma);
+    y_p_predict[n] = normal_rng(g_predict[n], 1e-5);
 }
 }
