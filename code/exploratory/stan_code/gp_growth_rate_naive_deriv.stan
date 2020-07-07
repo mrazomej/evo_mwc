@@ -12,24 +12,28 @@ functions {
     // Define variables for evaluation
     int N_data = rows(y);  // number of data points
     int N_ppc = size(x_ppc);  // number of time points on ppc
-    vector[2 * N_ppc] f_df_ppc;  //  posterior predictive samples
+    vector[N_ppc] f_df_ppc;  //  posterior predictive samples
 
     // Build necessary covariance matrices
     // 1. Build bottom left covariance matrix K_22
     // 1.1 Build Kx*x*
     matrix[N_ppc, N_ppc] K_xs_xs = cov_exp_quad(x_ppc, alpha, rho);
-    // 1.2 Initialize dx_Kx*x*
-    matrix[N_ppc, N_ppc] dx_K_xs_xs;
+
+    // 1.2 Initialize d1x_Kx*x* and d2x_Kx*x*
+    matrix[N_ppc, N_ppc] d1x_K_xs_xs;
+    matrix[N_ppc, N_ppc] d2x_K_xs_xs;
     // 1.3 Initialize dxx_Kx*x*
     matrix[N_ppc, N_ppc] d2xx_K_xs_xs;
     // 1.4 Compute derivatives of the matrices by multiplying by corresponding
     // prefactors
     for (i in 1:N_ppc){
         for (j in 1:N_ppc){
-            dx_K_xs_xs[i, j] = -2 / rho^2 * (x_ppc[i] - x_ppc[j]) *
+            d1x_K_xs_xs[i, j] = - 1 / rho^2 * (x_ppc[i] - x_ppc[j]) *
                                K_xs_xs[i, j];
-            d2xx_K_xs_xs[i, j] = 2 / rho^2 * 
-            (1 - 2 * (x_ppc[i] - x_ppc[j])^2 / rho^2) * K_xs_xs[i, j];
+            d2x_K_xs_xs[i, j] = 1 / rho^2 * (x_ppc[i] - x_ppc[j]) *
+                               K_xs_xs[i, j];
+            d2xx_K_xs_xs[i, j] = 1 / rho^2 * 
+            (1 - (x_ppc[i] - x_ppc[j])^2 / rho^2) * K_xs_xs[i, j];
         }
     }
     // 1.5 Initialize matrices for concatenation
@@ -37,27 +41,36 @@ functions {
     matrix[N_ppc, 2 * N_ppc] K_22_bottom;
     matrix[2 * N_ppc, 2 * N_ppc] K_22;
     // 1.6 Concatentate matrices
-    K_22_top = append_col(K_xs_xs, dx_K_xs_xs);
-    K_22_bottom = append_col(dx_K_xs_xs', d2xx_K_xs_xs);
-    K_22 = append_row(K_22_bottom, K_22_top);
-    
+    K_22_top = append_col(K_xs_xs, d2x_K_xs_xs);
+    K_22_bottom = append_col(d1x_K_xs_xs, d2xx_K_xs_xs);
+    // K_22_top = append_col(K_xs_xs, dx_K_xs_xs);
+    // K_22_bottom = append_col(dx_K_xs_xs', K_xs_xs);
+    K_22 = append_row(K_22_top, K_22_bottom);
+
     // 2. Compute top right and bottom left matrices K_12, K_21
     // 2.1 Build Kxx*
     matrix[N_data, N_ppc] K_x_xs = cov_exp_quad(x_data, x_ppc, alpha, rho);
-    // 2.2 Initialize dx_Kxx*
-    matrix[N_data, N_ppc] dx_K_x_xs;
+    matrix[N_ppc, N_data] K_xs_x = cov_exp_quad(x_ppc, x_data, alpha, rho);
+    // 2.2 Initialize d1x_Kx*x and d2x_Kxx*
+    matrix[N_data, N_ppc] d2x_K_x_xs;
+    matrix[N_ppc, N_data] d1x_K_xs_x;
     // 2.3 Compute derivative of matrices by multiplying by corresonding
     // prefactors
     for (i in 1:N_data) {
         for (j in 1:N_ppc) {
-            dx_K_x_xs[i, j] = -2 / rho^2 * (x_data[i] - x_ppc[j]) *
+            d2x_K_x_xs[i, j] = 1 / rho^2 * (x_data[i] - x_ppc[j]) *
                               K_x_xs[i, j];
+            d1x_K_xs_x[j, i] = - 1 / rho^2 * (x_ppc[j] - x_data[i]) *
+                              K_xs_x[j, i];
+
         }
     }
     // 2.4 Initializ matrix to concatenate
     matrix[N_data, 2 * N_ppc] K_12;
+    matrix[2 * N_ppc, N_data] K_21;
     // 2.5 Concatenate matrices
-    K_12 = append_col(K_x_xs, dx_K_x_xs);
+    K_12 = append_col(K_x_xs, d2x_K_x_xs);
+    K_21 = append_row(K_xs_x, d1x_K_xs_x);
 
     // 3. Solve equation Kxx * a = y
     // 3.1 Generate covariance matrix for the data Kxx
@@ -73,22 +86,19 @@ functions {
     vector[N_data] a = mdivide_left_tri_low(L_x_x, b);
 
     // 4. Compute conditional mean <[f(x*), dx*f(x*)] | f(x)>
-    vector[2 * N_ppc] mean_conditional = K_12' * a;
+    vector[2 * N_ppc] mean_conditional = K_21 * a;
 
     // 5. Evaluate v = inv(Lxx) * Kxx*
     matrix[N_data, 2 * N_ppc] v = mdivide_left_tri_low(L_x_x, K_12);
+    // 6. Evaluate v' = inv(Lxx) * Kx*x
+    matrix[2 * N_ppc, N_data] v_prime = mdivide_left_tri_low(L_x_x, K_21')';
 
-    // 6. Compute conditional covariance
-    matrix[2 * N_ppc, 2 * N_ppc] cov_conditional = K_22 - v' * v +
+    // 7. Compute conditional covariance
+    matrix[2 * N_ppc, 2 * N_ppc] cov_conditional = K_22 - v_prime * v +
                                     diag_matrix(rep_vector(delta, 2 * N_ppc));
 
     // Generate random samples given the conditional mean and covariance
     f_df_ppc = multi_normal_rng(mean_conditional, cov_conditional);
-
-    // Initialize matrix to be returned
-    // matrix[N_ppc, 2] f_output;
-    // // Slice output to have one column be f(x*) and the other df(x*)
-    // f_output = append_col(head(f_df_ppc, N_ppc), tail(f_df_ppc, N_ppc));
 
     return f_df_ppc;
     }
@@ -113,8 +123,8 @@ parameters {
 
 model {
     // Define covariance matrix k(t, t')
-    matrix[N, N] cov_exp =  cov_exp_quad(t, alpha, rho);
-    matrix[N, N] cov = cov_exp + diag_matrix(rep_vector(square(sigma), N));
+    matrix[N, N] cov = cov_exp_quad(t, alpha, rho) +
+                       diag_matrix(rep_vector(square(sigma), N));
     // Perform a Cholesky decomposition of the matrix, this means rewrite the
     // covariance matrix cov = L_cov L_cov'
     matrix[N, N] L_cov = cholesky_decompose(cov);
@@ -134,6 +144,6 @@ generated quantities {
     vector[N_predict] dy_predict;
     for (n in 1:N_predict) {
         y_predict[n] = normal_rng(f_predict[n], sigma);
-        dy_predict[n] = normal_rng(f_predict[N_predict + n], 1e-5);
+        dy_predict[n] = normal_rng(f_predict[N_predict + n], 1e-10);
     }
 }
