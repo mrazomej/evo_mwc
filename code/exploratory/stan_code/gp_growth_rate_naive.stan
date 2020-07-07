@@ -14,58 +14,55 @@ functions {
     int N_ppc = size(t_ppc);  // number of time points on ppc
     vector[N_ppc] f_ppc;  //  posterior predictive samples
     {
-        // Objective: 
-        // Generate covariance matrix for the data
+        // Compute conditional mean <f(x*) | f(x), x, y>
+
+        // 0. Generate covariance matrix for the data
+        // 0.1 Compute exponentiated quadratic kernel
         matrix[N_data, N_data] K_exp = cov_exp_quad(t_data, alpha, rho);
-        matrix[N_data, N_data] K = K_exp 
+        // 0.2 Add observation error to diagonal
+        matrix[N_data, N_data] Kxx = K_exp 
         + diag_matrix(rep_vector(square(sigma), N_data));
-        // We want to solve K ⍺ = y for ⍺. K can be written as K = L_K L_K'
 
-        // 1. Perform Cholesky decomposition K = L_K L_K'
-        matrix[N_data, N_data] L_K = cholesky_decompose(K);
-        // This now allows us to write the equation to solve L_K L_K' ⍺ = y.
-        // We can now compute L_K' ⍺ = inv(L_K) y
+        // 1. Perform Cholesky decomposition Kxx = Lxx Lxx'
+        matrix[N_data, N_data] Lxx = cholesky_decompose(Kxx);
 
-        // 2. Compute inv(L_K) y. Since L_K is a triangular matrix we can use
-        // the mdivide_left_tri_low function
-        vector[N_data] L_K_div_y_data = mdivide_left_tri_low(L_K, y);
-        // With this result in hand we can now solve for alpha by computing
-        // ⍺ = inv(L_k') inv(L_K) y. This is equivalent to ⍺ = inv(K) y
+        // 2. Solve for b = inv(Lxx) y. Since L_K is a triangular matrix we can 
+        // use the mdivide_left_tri_low function
+        vector[N_data] b = mdivide_left_tri_low(Lxx, y);
 
-        // 3. Compute ⍺ = inv(L_k') inv(L_K) y. Since L_K' is a triangular 
+        // 3. Solve a = inv(Lxx') inv(Lxx) y. Since Lxx' is a triangular 
         // matrix we can use the mdivide_right_tri_low function
-        vector[N_data] K_div_y_data = mdivide_right_tri_low(
-            L_K_div_y_data', L_K
+        vector[N_data] a = mdivide_right_tri_low(
+            b', Lxx
         )';
 
-        // Generate covariance matrix for both data an ppc
-        matrix[N_data, N_ppc] k_t_data_t_ppc = cov_exp_quad(
+        // 4. Multiply by covariance matrix between f(x*) and f(x)
+        // 4.1 Generate covariance matrix for both data an ppc Kxx*
+        matrix[N_data, N_ppc] Kxx_star= cov_exp_quad(
             t_data, t_ppc, alpha, rho
         );
-        // Evaluate the mean function of the Gaussian process, given by
-        // f_µ = K' ⍺
-        vector[N_ppc] f_mu = (k_t_data_t_ppc' * K_div_y_data);
+        // 4.2 Multiply to obtain conditional mean <f(x*)|f(x),x,y>
+        vector[N_ppc] fx_star_cond = (Kxx_star' * a);
 
-        // Evaluate the variance function of the Gaussian process, given by
-        // Σ = K* - K*' inv(K) K*,
-        // where K* is the covariance matrix of all the points to be evaluated.
-        // Using the fact that inv(K) = inv(L_K L_K') this can be rewritten as
-        // Σ = K* - K*' inv(L_K L_K') K*,
-        //   = K* - K*' inv(L_K) inv(L_K') K*.
+        // Compute conditional covariance cov(f(x*), f(x*))| f(x), x, y
 
-        // 1. Evaluate inv(L_K) K*
-        matrix[N_data, N_ppc] v_pred = mdivide_left_tri_low(
-            L_K, k_t_data_t_ppc
+        // 1. Cholesky decompose data covariance matrix
+        // ALREADY DONE
+
+        // 2. Evaluate v = inv(Lxx) * Kxx*
+        matrix[N_data, N_ppc] v = mdivide_left_tri_low(
+            Lxx, Kxx_star
         );
-        // 2. Evaluate Σ = K* - K*' inv(L_K L_K') K*
-        matrix[N_ppc, N_ppc] cov_f_exp = cov_exp_quad(t_ppc, alpha, rho) ;
-        matrix[N_ppc, N_ppc] cov_f_exp2 = cov_f_exp - v_pred' * v_pred;
-        matrix[N_ppc, N_ppc] cov_f = cov_f_exp2 
+        // 3. Evaluate conditional covariance matrix
+        // 3.1 Compute exponentiated quadratic kernel for f(x*)
+        matrix[N_ppc, N_ppc] Kx_star_x_star= cov_exp_quad(t_ppc, alpha, rho) ;
+        // 3.2 Evaluate Kx*|x = Kx*x* - v' * v with small numerical value
+        matrix[N_ppc, N_ppc] Kx_star_cond = Kx_star_x_star- v' * v
                                       + diag_matrix(rep_vector(delta, N_ppc));
 
         // Generate random samples given the variance and covariance functions
         // for the ppc samples
-        f_ppc = multi_normal_rng(f_mu, cov_f);
+        f_ppc = multi_normal_rng(fx_star_cond, Kx_star_cond);
     }
     return f_ppc;
     }
