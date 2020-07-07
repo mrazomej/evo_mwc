@@ -58,3 +58,10 @@ strains in tetracycline using a checker board pattern.
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements of both OD600 and YFP
    were taken every 15 minutes for approximately 24 hours.
+
+## Conclusions
+
+The data looks decent. The rank order of the growth rates looks roughly okay, 
+except that there is no clear distinction between R260 and R740. This might be
+expected given that for O1 strains the expression at this point might be not 
+that different since both strains are highly repressed.
