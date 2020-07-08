@@ -113,6 +113,11 @@ data {
     // Posterior Predictive Checks
     int<lower=1> N_predict;  // number of points where to evalute ppc
     real t_predict[N_predict];  // time points where to evaluate ppc
+    
+    // Prior information
+    real alpha_param[2];  // parameters for marginal std
+    real sigma_param[2];  // parameters for observational error
+    real rho_param[2];    // parameters for length-scale parameter
 }
 
 parameters {
@@ -122,6 +127,11 @@ parameters {
 }
 
 model {
+    // Define priors
+    alpha ~ normal(alpha_param[1], alpha_param[2]);
+    sigma ~ normal(sigma_param[1], sigma_param[2]);
+    rho ~ normal(rho_param[1], rho_param[2]);
+
     // Define covariance matrix k(t, t')
     matrix[N, N] cov = cov_exp_quad(t, alpha, rho) +
                        diag_matrix(rep_vector(square(sigma), N));
