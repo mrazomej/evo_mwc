@@ -41,7 +41,7 @@ functions {
     matrix[N_ppc, 2 * N_ppc] K_22_bottom;
     matrix[2 * N_ppc, 2 * N_ppc] K_22;
     // 1.6 Concatentate matrices
-    K_22_top = append_col(K_xs_xs, d2x_K_xs_xs);
+    K_22_top = append_col(K_xs_xs, d1x_K_xs_xs');
     K_22_bottom = append_col(d1x_K_xs_xs, d2xx_K_xs_xs);
     // K_22_top = append_col(K_xs_xs, dx_K_xs_xs);
     // K_22_bottom = append_col(dx_K_xs_xs', K_xs_xs);
@@ -83,7 +83,7 @@ functions {
     vector[N_data] b = mdivide_left_tri_low(L_x_x, y);
     // 3.4 Solve a = inv(Lxx') b taking advantage that Lxx is a triangular
     // matrix. Recall that a = inv(Kxx) y
-    vector[N_data] a = mdivide_left_tri_low(L_x_x, b);
+    vector[N_data] a = mdivide_right_tri_low(b', L_x_x)';
 
     // 4. Compute conditional mean <[f(x*), dx*f(x*)] | f(x)>
     vector[2 * N_ppc] mean_conditional = K_21 * a;
@@ -122,6 +122,10 @@ parameters {
 }
 
 model {
+
+    rho ~ normal(8000, 1000);
+    alpha ~ normal(0, 2);
+    sigma ~ normal(0, 1);
     // Define covariance matrix k(t, t')
     matrix[N, N] cov = cov_exp_quad(t, alpha, rho) +
                        diag_matrix(rep_vector(square(sigma), N));
