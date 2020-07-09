@@ -40,7 +40,7 @@ CHAINS = 6
 ITER_SAMPLING = 250
 
 # Define if you only want to plot existing results
-REPLOT = True
+REPLOT = False
 
 # %%
 # Load the data.
