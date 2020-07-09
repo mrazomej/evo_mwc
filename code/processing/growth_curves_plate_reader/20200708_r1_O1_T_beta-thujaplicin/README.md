@@ -1,6 +1,6 @@
 ---
 status: Rejected
-reason: experiment not yet completed
+reason: data makes no sense nor follows any clear pattern.
 ---
 
 # 2020-07-08 Plate Reader Growth Measurement
@@ -68,3 +68,12 @@ the growth curve.
 5. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements of both OD600 and YFP
    were taken every 15 minutes for approximately 24 hours.
+
+## Conclusions
+
+The conclusions presented here were done from a qualitative analysis based on
+the file `growth_plate_reader_exploration.ipynb` in this folder.
+
+The data makes no sense. It doesn't agree with any expectation, nor follows a
+clear pattern. This data is useless, and β-thujaplicin doesn't seem to behave as
+expected.
