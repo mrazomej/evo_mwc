@@ -18,7 +18,7 @@ matplotlib.use('Agg')
 evo_mwc.viz.pboc_style_mpl()
 
 # List data to be read
-TABLES = ["OD600", "YFP"]
+TABLES = ["OD600"]
 
 # Find date
 workdir = os.getcwd().split('/')[-1]
@@ -170,7 +170,7 @@ for r in np.arange(layout_shape[0]):
         ax[r][c].get_xaxis().set_visible(False)
         ax[r][c].get_yaxis().set_visible(False)
         # Plot data
-        if len(TABLES) == 0:
+        if len(TABLES) == 1:
             ax[r][c].scatter(data.loc[:, 0],  data.loc[:, i],
                             marker='.', s=0.2)
         else:

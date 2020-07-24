@@ -1,6 +1,6 @@
 ---
 status: Rejected
-reason: experiment not yet completed
+reason: The effect of the positive and negative selection were too small
 ---
 
 # 2020-07-23 Plate Reader Growth Measurement
@@ -57,3 +57,17 @@ constructs.
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements of OD600 were taken every
    25 minutes for approximately 24 hours.
+
+# Conclusions
+
+The conclusions are based on a qualitative assessment of the data done with the
+`growth_curve_exploration.ipynb` file.
+
+From this data we can see that both selections were too small. 1 µg/mL
+tetracycline wasn't enough, neither 0.5% sucrose. The only difference in growth
+is seen in the R1740 strain. This strain was outside of the usual rows used for
+consistent measurements. Even the no-selection well showed this behavior;
+therefore it is unlikely that this is a real effect.
+
+The data is not useful. We will need to increase the concentration of the
+selection agents.
