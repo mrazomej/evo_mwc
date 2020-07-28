@@ -57,3 +57,17 @@ selection to disulfiram and/or β-thujaplicin.
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements of OD600 were taken every
    25 minutes for approximately 24 hours.
+
+# Conclusions
+
+The conclusions listed here were obtained from a qualitative assessment of the 
+data based on the analysis in the `growth_plate_reader_expliration.ipynb` file.
+
+The 25 µg/mL tetracycline were not even close to the MIC concentration for these
+constructs despite being more than 10 times larger to a concentration that
+inhibited the growth of the pure *tetA* constructs.
+
+As for the negative selection on *tetA* with both disulfiram and β-thujaplicin,
+these data don't show the expected trend. If anything it again shows the
+opposite trend expected with the most repressed strain having the smallest
+growth rate. Very confusing again.
