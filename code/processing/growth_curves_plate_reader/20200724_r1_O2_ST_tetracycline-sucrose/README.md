@@ -1,9 +1,9 @@
 ---
 status: Rejected
-reason: The effect of the positive and negative selection were too small
+reason: The sucrose concentration wasn't high enough to see the desired effect
 ---
 
-# 2020-07-23 Plate Reader Growth Measurement
+# 2020-07-24 Plate Reader Growth Measurement
 
 ## Purpose
 Now that we have decided that the tetA single gene construct were not taking us
@@ -17,10 +17,10 @@ constructs.
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
 | `pZS4*5-mCherry`| `none` |  HG105 |`HG105` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-tetA-c51m` |  HG105 |`O1 R0` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-tetA-c51m` |  HG104 |`O1 R22` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-tetA-c51m`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O1 R260` |
-| `pZS4*5-mCherry`| `galK<>25O1+11-sacB-tetA-c51m`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O1 R1740` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-tetA-c51m` |  HG105 |`O2 R0` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-tetA-c51m` |  HG104 |`O2 R22` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-tetA-c51m`, `ybcN<>4*5-RBS1027-lacI` |  HG105 |`O2 R260` |
+| `pZS4*5-mCherry`| `galK<>25O2+11-sacB-tetA-c51m`, , `ybcN<>4*5-RBS1L-lacI` |  HG105 |`O2 R1740` |
 
 ## Plate Layout
 
@@ -63,11 +63,7 @@ constructs.
 The conclusions are based on a qualitative assessment of the data done with the
 `growth_curve_exploration.ipynb` file.
 
-From this data we can see that both selections were too small. 1 µg/mL
-tetracycline wasn't enough, neither 0.5% sucrose. The only difference in growth
-is seen in the R1740 strain. This strain was outside of the usual rows used for
-consistent measurements. Even the no-selection well showed this behavior;
-therefore it is unlikely that this is a real effect.
 
-The data is not useful. We will need to increase the concentration of the
-selection agents.
+At this concentration it seems as if only the R0 strain is being affected by the
+sucrose in both concentrations. Probably a higher concentration of sucrose could
+clarify this lack of effect on all other strains.
