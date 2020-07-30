@@ -1,12 +1,14 @@
 ---
-status: Rejected
-reason: experiment not yet completed
+status: Accepted
+reason: Trends follow the expectations
 ---
 
-# YYYY-MM-DD Plate Reader Growth Measurement
+# 2020-07-29 Plate Reader Growth Measurement
 
 ## Purpose
-This experiment aims to measure the growth rate of the *E. coli* strains of interest in media with XX selection.
+Having found the MIC for both tetracycline and sucrose for the unregulated
+strains now we will assess quantitatively if we can distinguish the growth of
+different strains.
 
 ## Strain Information
 
@@ -53,3 +55,14 @@ This experiment aims to measure the growth rate of the *E. coli* strains of inte
 4. The plate was placed in a Biotek Gen5 plate reader and grown at 37ºC, shaking
    in a linear mode at the fastest speed. Measurements were taken every 25
    minutes for approximately 24 hours.
+
+## Conclusions
+
+The conclusions presented here come from a qualitative assessment of the data 
+done with the `growth_plate_reader_exploration.ipynb` file.
+
+The selection seems to go in the right trend. This is especially obvious for
+the positive selection with tetracycline, but less clear for the negative 
+selection with sucrose. The difference between the regulated strains is small
+to notice for this case. A bit of IPTG induction could accentuate the 
+differences between strains. But this is going in the right direction.
