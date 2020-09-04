@@ -105,7 +105,7 @@ if (not REPLOT):
         samples = sm.sample(
             data=data,
             chains=6,
-            iter_sampling=100,
+            iter_sampling=400,
             show_progress=False,
         )
         print("Done!")
