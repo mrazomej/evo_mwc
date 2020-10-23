@@ -13,7 +13,7 @@ Repeating experiment for both tetracycline and sucrose on the unrepressed strain
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
 | `none`| `none` |  HG105 |`HG105` |
-| `pZS4*5-CFP`| `galK<>25O2+11-sacB-tetA-C51m` |  HG105 |`O2 R0` |
+| `pZS4*5-CFP`| `galK<>25O1+11-sacB-tetA-C51m` |  HG105 |`O1 R0` |
 
 
 ## Plate Layout
@@ -53,4 +53,5 @@ Repeating experiment for both tetracycline and sucrose on the unrepressed strain
 ## Conclusions
 
 The conclusions presented here come from a qualitative assessment of the data 
-done with the `growth_plate_reader_exploration.ipynb` file.
+done with the `growth_plate_reader_exploration.ipynb` file:
+The growth rates are following the expected trend. The tetracycline resistant strain is much more susceptible to sucrose. Note that the wild type also has reduced growth with increasing sucrose. However, it still grows much better than the resistant strain. By combining tetracycline and sucrose we were able to inhibit growth of both resistant and wild type strain. 
