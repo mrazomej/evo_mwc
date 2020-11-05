@@ -3,17 +3,16 @@ status: Preparing
 reason: 
 ---
 
-# 2020-10-21 Plate Reader Growth Measurement
+# 2020-11-04 Plate Reader Growth Measurement
 
 ## Purpose
-Repeating experiment for both tetracycline and sucrose on the unrepressed strain compared to wild type, and also trying out combinations of these two substrates and see how the effects of them combine.
-
+Repeating experiment for both tetracycline and sucrose on the most repressed strain compared to wild type
 ## Strain Information
 
 | Plasmid | Genotype | Host Strain | Shorthand |
 | :------ | :------- | ----------: | --------: |
 | `none`| `none` |  HG105 |`HG105` |
-| `pZS4*5-CFP`| `galK<>25O2+11-sacB-tetA-C51m` |  HG105 |`O2 R0` |
+| `pZS4*5-CFP`| `galK<>25O1+11-sacB-tetA-C51m` |  HG105-1l |`O2 R1740 |
 
 
 ## Plate Layout
